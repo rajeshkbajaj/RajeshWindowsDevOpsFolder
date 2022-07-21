@@ -1,0 +1,35 @@
+Python is case sensitive or in other words, these variables are case sensitive. This means that declaring  name= 2 & Name = 4 would create two different variables
+
+Strings are immutable 
+
+Module names should be all lower case
+When multiple words are needed and underscore should separate them
+It is usually preferable to stick to 1-word names
+
+
+JSON is mainly used for excahnge(Interchange) data between computer which are connected to internet. 
+lightweight , file format. 
+it is not a protocol ....JSON serialized the data ( HTTP)
+
+Server is a Node ( Computer ) in data centers
+
+in REST API ...data is transform in JSON 
+
+LODS for reading 
+DUMP for writing
+
+LIST , dictionary
+
+
+forntend        : Python 
+Backend written : JAVA
+now both can communicate between data using JSON. 
+
+JSON can be encrypted using SSL 
+
+*****************************************************************************
+
+REST is an Architechture 
+REpresentational State Transfer 
+
+

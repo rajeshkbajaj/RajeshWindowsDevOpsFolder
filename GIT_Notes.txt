@@ -1,0 +1,4 @@
+Learn Tricky GIT commands like, rebase, Squash, Cherry pick, amend, bisect, revert , reset etc
+
+git tag -d <tag_name>
+git push --delete origin <tag_name>

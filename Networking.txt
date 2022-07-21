@@ -1,0 +1,46 @@
+The MAC address is used to locate the correct device in a network and IP address is used to transfer data from one network to another.
+It is possible that several devices are connected to the router, and, to send the data to the user who has requested it, the MAC address is required.
+
+Media Access Control (MAC) address is used to uniquely identify a computer on the network. The IP address refers to the logical address of the computer, while MAC address points out the physical address of the computer connected. 
+
+IPv4 - 32  Bits
+IPv6 - 128 Bits
+
+in IP address , all bits are will be range of 0 to 255. (XX.XX.XX.XX) 
+
+URL - Uniform Resource Locator
+When we type google.com and press Enter, our browser sends an IP address lookup for the domain name via the DNS to send the request. After getting the IP address, it sends HTTP requests to the server. The server then sends the response back in response to the request. The browser then starts rendering the HTML.
+
+http://www.google.com:80/path/to/myfile.html?
+
+http: protocol
+www.google.com --- top-level-domain
+80: port no
+The DNS protocol is responsible for resolving domain names to a specific IP address.
+Informational responses (100–199)
+Successful responses (200–299)
+Redirection messages (300–399)
+Client error responses (400–499)
+Server error responses (500–599)
+
+The ping command is used to check the connectivity between the source and the destination by measuring the time taken by a packet to return from a particular destination, e.g., ping www.google.com.
+
+13 root servers
+IPS goes to root servers and get chache
+
+.com -- comes under server 1
+.edu -- comes under server 2
+.net -- comes under server 3
+
+route -n - route table
+route -Cn - chache route 
+traceroot - for debugging route path from source to destination
+
+Correct. REST does not enforce any rule regarding how it should be implemented at a lower level. It just puts high-level design guidelines and leaves you to think of your own implementation.
+
+******************************************************************************************************
+GRADED
+
+1.Correct. While the servers receive requests and send responses, the clients are needed to make requests. However, an ISP is required to connect the client and the server.
+2.GET and PUT are both valid REST API methods.
+3.The nslookup command is used to query Data Network Server (DNS) for the IP address of any given domain or domain name specific to any given IP address e.g., nslookup www.google.com.
