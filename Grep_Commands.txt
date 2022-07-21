@@ -21,5 +21,27 @@ awk -F ", '/Abhinav/ {print $3}' ./Downloads/AccessLogs.txt | sort -u | wc -l
 
 
 
+Some Useful Commands:
 
+1. Below is an Unix command to list all the IP addresses connected to your server on port 80.
+
+netstat -tn 2>/dev/null | grep :80 | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -nr | head
+
+Explanation:
+Uses netstat to list all network connections, ins and outs.
+
+    -n – Display numeric only, don’t resolve into name.
+    -t – Display only TCP connections.
+    Redirect all unwanted output to /dev/null, a special place to absorb all output and clear it.
+    Only display the IP address that connected to server on port 80.
+    Uses awk to display the 5th field only.
+    
+    Uses cut to extract the content.
+
+    -d – Character immediately following the -d option is use as delimiter, default is tab.
+    -f – Specifies a field list, separated by a delimiter.
+    
+    Sort the list, group it and sort it again in reverse order.
+    
+    This is optional, to display the first 10 result.
 
