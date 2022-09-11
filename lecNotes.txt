@@ -1,0 +1,337 @@
+4 problem statement:
+
+Life Cycle of a container has 3 phases:
+
+Starting phase  -> container name ,  Image name , port mapping , volume , N/W config
+Running  phase  -> Scaling , Load balancing , availability and Health Check
+Deletion phase	 -> cleanup of resources
+
+Docker Swarm:
+advertiser command we can create a master container  
+1 Master
+n no of workers can have by using replica command
+
+
+docker node ls
+docker service ls
+docker service ps webserver
+docker service scale webserver=4
+
+replica - basically creates no of workers machines
+global  - on every machine we need one service like antivirus
+
+how to replace V1(10) images with V2 .....without disturbing the end user
+Rolling deployment: incrementally/gradually replacing docker container
+when replacing the first 2 request will go to other 8 docker container
+
+how it happens:
+
+update parallelism  --> how many need to replace 
+update delay  --> time interval ( delay ) between 2 images
+
+docker service update --update-parallelism 1 --update-delay 20s --image nginx:1.18-alpine webserver
+
+
+Docker Stack: same as Dcoker Swarm
+Docker swarm configuration adding in docker compose file ( i.e deploy: )
+
+
+Session 2:
+
+Docker compose : Availability, multi node, scalability and deployment  are the challenges
+Orchestration - Docker Swarm : Task , service , how to launch multiple container. 
+
+Ec2 IP:5000 is running but i cant make public ....i need to make as http/https
+vote on 80 but what abt results ? on which port then
+user can not launch multiple applications on same port 
+
+single cluster - having multiple applications having on one port i.e http 
+Webserver we need for that
+
+without / means a folder present in the current folder ( /b/c )
+
+
+
+VPN is a forword proxy server
+reverse proxy also know as load balancing 
+
+if user is aware of proxy then it is called forword 
+
+Client -> Internet -> Proxy ( Nginx ) -> Services ( Fornt end ; Login ; payment ) ----> this reverse proxy 
+Client 1 , Client 2 --> Proxy(example: VPN) --> Internet --> Application Server ----> this is Forword proxy 
+
+
+
+sudo service nginx status
+sudo apt-get install net-tools
+sudo netstat -nptl
+
+ps -eaf | grep nginx
+
+cat nginx.conf | grep -v "#"
+
+worker connections * no of core of the system ( t2 micro system has 2 worker process) ...can we change ..yes
+means it will receive the user request
+
+1 worker process can handle 768 services
+
+no of worker process * no of worker connections
+
+/etc/nginx# tail -f /var/log/nginx/access.log 
+
+server {
+        listen 80 ;
+        listen [::]:80 ;
+
+
+        root /var/www/html/vote;
+
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name upgradvote.com;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+
+}
+
+now checking voating application:
+
+sudo docker swarm init
+sudo docker stack deploy --compose-file=docker-stack.yml demo
+
+192.168.1.103:5000
+then change the /etc/nginx/sites-enables / upgrad 
+add proxy-pass http://192.168.1.103:5000;
+
+then use upgradlearners.com - open voting app.
+
+
+Scaling -> ability to easily increase/decrease compute or storage resources
+DB , proxy server , redis
+
+Vertical   : increase the size of server ( like example: t2 micro to t2 micro large )
+Horizontal : Adding mode servers ( adding nodes to cluster )
+
+it depends on the Architecture
+DB - Vertical
+server sending email to all - Vertical
+
+Vertical scaling allways comes with downtime (maintenance)
+Horizintal - Architectural design can be complicapted 
+
+Ways to Scale: Manual ; Schedule ; Automatic 
+
+Load Balancer:
+
+on which Server user need to hit ? 
+
+Docker Swarm,Docker Compose - cant use AWS load balancer it cost high ..use nginx load balancer locally
+
+Multiple loadbalancing techniques available for nginx
+
+IP Hash : 
+probelm : 2 users are there u1 and u2 now we have upstream of 2 servers ..now if u1 hits LB then first time 
+goes to v1 then if he refresh if going to v2 then it is a bad request
+u1 wants allways v1 ..how to do ?
+
+from user IP : it caluclates 1 or 2 
+
+go for schedule one when user know maximum traffic comes on 10:00 AM to 7:00 PM
+
+IP hash does not slove latency issues
+C - least connection approach for load balancing 
+
+
+Scope of overlay network is docker swarm. i.e ingress .. post exposing publish 
+user can hit any Ec2 machine on that cluster if no docker container present ....but user will get response.
+forword to another Ec2 machine if not present in one Ec2 machine
+cluster/swarm scope
+
+How many network are possible in Swarm ? only One
+
+whenever a docker swarm is created a new docker network created called overlay.
+
+
+Placement Constraints:
+
+we can recommend master machine to go these sites in these Ec2 machine like ( like example: learn upgrad or dev ) and these sites in these 
+Ec2 machine ( like example : live upgrad or QA )
+
+with Tag , Lables we can do placement constraints
+
+
+now for Next Session:
+
+problems with swarm:  How to Create a Master ( setting up cluster ) what if Master goes down 
+Security
+logs
+Monitoring 
+CPU , memory
+Auto Sclaing 
+Load Balancing
+
+how to handle all these with simple with high Scalable and Available
+
+Manage Service - AWS ECS - Startup's ( 90% )
+Kubernatives
+
+not in cloud , own data center ...cant use ECS there 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
